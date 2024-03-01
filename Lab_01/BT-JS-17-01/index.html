@@ -110,8 +110,12 @@
     <script>
         // Ham kiem tra Regex
         //input check
-        var demoEmail = 'tony.2003@gmail.com';
-        var demoPass = 'Tony@12345';
+        var demoUser = [
+            {
+                demoEmail:  'tony.2003@gmail.com',
+                demoPass: 'Tony@12345'
+            }
+        ]
         //check email
         function CheckEmail(email) {
             var emailRegex = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})$/;
@@ -134,7 +138,7 @@
             
         }
 
-        if (CheckEmail(demoEmail)) {
+        if (CheckEmail(demoUser[0].demoEmail)) {
             document.write('Email chinh xac');
         } else {
             document.write('Email khong chinh xac');
@@ -142,7 +146,7 @@
         
         document.write('<br>')
         
-        if (CheckPassword(demoPass)) {
+        if (CheckPassword(demoUser[0].demoPass)) {
             document.write('Password chinh xac');
         } else {
             document.write('Password khong chinh xac');
@@ -154,14 +158,19 @@
     <script>
         // Ham doi email, password
         document.write('Email va Password' + '<br>')
-        document.write('Email cu: '+demoEmail);
+        document.write('Email cu: '+demoUser[0].demoEmail);
         document.write('<br>');
-        document.write('Password cu: '+demoPass);
+        document.write('Password cu: '+demoUser[0].demoPass);
 
-        var newEmail = 'Demo.2003@gmail.com';
-        var newPass = 'Tony#68686';
+        var user = [
+            {
+                userEmail: 'Demo.2003@gmail.com',
+                userPass: 'Tony#68686'
+            }
+        ]
+        
         document.write('<br><br>')
-
+        
         function changeEmail(email, newEmail){
             if (CheckEmail(email)) {
                 email = newEmail;
@@ -183,9 +192,9 @@
                 document.write('Password khong chinh xac');
             }
         }
-        changeEmail(demoEmail, newEmail);
+        changeEmail(demoUser[0].demoEmail, user[0].userEmail);
         document.write('<br><br>')
-        changePass(demoPass, newPass);
+        changePass(demoUser[0].demoPass, user[0].userPass);
     </script><br><br>
 
     <div>Ex7: add input for html && Ex8: submit for html</div>
@@ -307,10 +316,9 @@
                     var textReturnEmail ='';
                     var textReturnPass ='';
 
-                    changeEmail(demoEmail, inputEmailchange);
+                    changeEmail(demoUser[0].demoEmail, inputEmailchange);
                     document.write('<br><br>')
-                    changePass(demoPass, inputPasschange);
-
+                    changePass(demoUser[0].demoPass, inputPasschange);
                 })
             })
 
