@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab_01</title>
+</head>
+<body>
+
+<div id="productTable">
+    <div class="productRow">
+        <label for="SP">SP1</label>
+        <input type="text" placeholder="MSP">
+        <input type="text" placeholder="Ten">
+        <input type="text" placeholder="SL">
+        <button onclick="addRow()">Thêm</button>
+        <button onclick="removeRow(this)">Xoá</button>
+    </div>
+</div>
+
+<script>
+let rowIndex = 2;
+
+function addRow() {
+    const productTable = document.getElementById('productTable');
+    const lastRow = productTable.lastElementChild;
+
+
+    const newRow = document.createElement('div');
+    newRow.classList.add('productRow');
+
+    const newLabel = document.createElement('label');
+    newLabel.textContent = 'SP' + rowIndex;
+    newLabel.setAttribute('for', 'SP' + rowIndex);
+
+    newRow.appendChild(newLabel);
+    
+    const inputs = ['MSP', 'Ten', 'SL'].map(placeholder => {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = placeholder;
+        return input;
+    });
+
+
+    inputs.forEach(input => {
+        newRow.appendChild(input);
+    });
+
+    const addButton = document.createElement('button');
+    addButton.textContent = 'Thêm';
+    addButton.onclick = addRow;
+
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Xoá';
+    removeButton.onclick = function() {
+        removeRow(newRow);
+    };
+
+    newRow.appendChild(addButton);
+    newRow.appendChild(removeButton);
+
+    productTable.insertBefore(newRow, lastRow.nextSibling);
+
+    rowIndex++; 
+}
+
+function removeRow(row) {
+    const productTable = document.getElementById('productTable');
+    productTable.removeChild(row);
+}
+</script>
+
+</body>
+</html>
