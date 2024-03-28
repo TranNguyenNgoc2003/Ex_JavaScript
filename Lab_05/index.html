@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#driver").click(function(event){
+                $.ajax({
+                    type: "GET",
+                    url: "https://dummyjson.com/products",
+                    success: function(responseData){
+                        $.each(responseData.products, function(index, product){
+                            $('#stage').append('<p> Title: ' + product.title + '</p>');
+                            $('#stage').append('<p> Description: ' + product.description + '</p>');
+                            $('#stage').append('<p> Price: ' + product.price + '</p>');
+                            $('#stage').append('<p> Rating: ' + product.rating + '</p>');
+                            $('#stage').append('<p> Brand: ' + product.brand + '</p>');
+                            $('#stage').append('<p> Thumbnail:</p>');
+                            $('#stage').append('<p> <img style="width:200px" src="' + product.thumbnail + '"></p>');
+                            $('#stage').append('<hr>'); 
+                        });
+                    },
+                    dataType: "json"
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+    <p>Click on the button to load index.html file</p>
+    <div id="stage" style="background-color: rgb(235, 235, 235); padding: 20px;" >
+        STAGE
+    </div>
+    <br>
+    <input type="button" id="driver" value="Load Data">
+</body>
+</html>
